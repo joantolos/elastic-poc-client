@@ -1,0 +1,46 @@
+{
+  "settings": {
+    "analysis": {
+      "analyzer": {
+        "explode_names": {
+          "tokenizer": "whitespace",
+          "filter": ["lowercase", "explode_names_filter"]
+        }
+      },
+      "filter": {
+        "explode_names_filter": {
+          "type": "word_delimiter",
+          "preserve_original": "true",
+          "catenate_words": "true"
+        }
+      }
+    },
+    "number_of_replicas": 1
+  },
+  "mappings": {
+    "planets": {
+      "properties": {
+        "Planet": {
+          "properties": {
+            "id": {
+              "type": "long"
+            },
+            "name": {
+              "type": "string"
+            },
+            "Mythology": {
+              "properties": {
+                "origin": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
