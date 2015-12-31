@@ -35,6 +35,7 @@ public class ElasticSearchEngine {
                                .readObject().getJsonObject("hits")
                                .getJsonArray("hits")
                                .getJsonObject(0).toString())).readObject()
-                               .getJsonObject("_source").toString();
+                               .getJsonObject("_source")
+                               .getJsonArray("planet").toString();
     }
 }

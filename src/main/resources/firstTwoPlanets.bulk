@@ -1,4 +1,4 @@
 { "index" : { "_index" : "planets", "_type" : "planet", "_id" : "1" } }
-{"planet":[{"id": "1", "name": "Mercury", "Mythology": { "origin": "Greco-Roman", "name": "Mercury" } } ] }
+{"planet":[{"id": "1", "name": "Mercury", "mythology": { "origin": "Greco-Roman", "name": "Mercury" } } ] }
 { "index" : { "_index" : "planets", "_type" : "planet", "_id" : "2" } }
-{"planet":[{"id": "2", "name": "Venus", "Mythology": { "origin": "Greco-Roman", "name": "Venus" } } ] }
+{"planet":[{"id": "2", "name": "Venus", "mythology": { "origin": "Greco-Roman", "name": "Venus" } } ] }

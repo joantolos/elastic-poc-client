@@ -28,7 +28,7 @@
             "name": {
               "type": "string"
             },
-            "Mythology": {
+            "mythology": {
               "properties": {
                 "origin": {
                   "type": "string"

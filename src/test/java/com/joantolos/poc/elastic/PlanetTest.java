@@ -7,6 +7,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.List;
+
 public class PlanetTest {
 
     private ElasticSearchEngine elasticSearchEngine;
@@ -31,9 +33,12 @@ public class PlanetTest {
     @Test
     public void searchTest(){
         String planetListJson = this.elasticSearchEngine.search("planets", queryBody);
-        Planet planet = (Planet) JsonUtils.jsonToObject(planetListJson, Planet.class);
-        Assert.assertNotNull(planet);
-        Assert.assertEquals(new Long(1), planet.getId());
-        Assert.assertEquals("Mercury", planet.getName());
+        List<Planet> planets = JsonUtils.marshallPlanetJson(planetListJson);
+        Assert.assertNotNull(planets);
+        Assert.assertTrue(!planets.isEmpty());
+        Assert.assertEquals(new Long(1), planets.get(0).getId());
+        Assert.assertEquals("Mercury", planets.get(0).getName());
+        Assert.assertEquals("Mercury", planets.get(0).getMythology().getName());
+        Assert.assertEquals("Greco-Roman", planets.get(0).getMythology().getOrigin());
     }
 }
