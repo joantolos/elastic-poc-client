@@ -1,16 +1,34 @@
 package com.joantolos.poc.elastic.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import java.io.Serializable;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class Planet {
+public class Planet implements Serializable  {
 
-    Long id;
-    String name;
-    Mythology mythology;
+    private Long id;
+    private String name;
+    private Mythology mythology;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Mythology getMythology() {
+        return mythology;
+    }
+
+    public void setMythology(Mythology mythology) {
+        this.mythology = mythology;
+    }
 }
