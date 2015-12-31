@@ -1,0 +1,62 @@
+DELETE /planets
+
+PUT /planets
+{
+    "settings": {
+        "analysis" : {
+            "analyzer" : {
+                "explode_names" : {
+                    "tokenizer" : "whitespace",
+                    "filter" : ["lowercase", "explode_names_filter"]
+                }
+            },
+            "filter" : {
+                "explode_names_filter" : {
+                    "type" : "word_delimiter",
+                    "preserve_original" : "true",
+                    "catenate_words" : "true"
+                }
+            }
+        },
+        "number_of_replicas": 1
+    },
+    "mappings": {
+        "planets": {
+            "properties": {
+                "planet": {
+                   "properties": {
+                      "id": {
+                         "type": "long"
+                      },
+                      "name": {
+                         "type": "string"
+                      },
+                      "mythology": {
+                        "properties": {
+                          "origin": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                   }
+                }
+            }
+        }
+    }
+}
+
+POST /_bulk
+{ "index" : { "_index" : "planets", "_type" : "planet", "_id" : "1" } }
+{"planet":[{"id": "1", "name": "Mercury", "mythology": { "origin": "Greco-Roman", "name": "Mercury" } } ] }
+{ "index" : { "_index" : "planets", "_type" : "planet", "_id" : "2" } }
+{"planet":[{"id": "2", "name": "Venus", "mythology": { "origin": "Greco-Roman", "name": "Venus" } } ] }
+
+GET /planets
+
+GET /planets/_search?q=planet.id=1
+
+POST /planets/_search
+{ "query" : { "term" : { "planet.id" : "1" } } }

@@ -2,7 +2,7 @@ package com.joantolos.poc.elastic.utils;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.joantolos.poc.elastic.entity.Planet;
+import com.joantolos.poc.elastic.entity.planet.Planet;
 
 import java.util.ArrayList;
 
