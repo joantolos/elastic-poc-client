@@ -10,7 +10,6 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <lombok.version>1.16.4</lombok.version>
     </properties>
 
     <dependencies>
@@ -18,7 +17,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
+            <version>1.16.4</version>
         </dependency>
 
         <dependency>
