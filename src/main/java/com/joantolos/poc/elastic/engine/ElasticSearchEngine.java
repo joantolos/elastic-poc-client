@@ -1,6 +1,6 @@
-package com.joantolos.poc.elastic;
+package com.joantolos.poc.elastic.engine;
 
-import com.joantolos.poc.elastic.remote.ElasticServer;
+import com.joantolos.poc.elastic.engine.remote.ElasticServer;
 import feign.Feign;
 import feign.auth.BasicAuthRequestInterceptor;
 import org.apache.commons.lang.StringUtils;
@@ -26,7 +26,19 @@ public class ElasticSearchEngine {
         }
     }
 
-    public String searchPlanet(String index, String query) {
+    public String delete(String index){
+        return elasticServer.delete(index);
+    }
+
+    public String mappings(String index, String mappings){
+        return elasticServer.mappings(index, mappings);
+    }
+
+    public String bulk(String index, String bulk){
+        return elasticServer.bulk(index, bulk);
+    }
+
+    public String search(String index, String query) {
         String searchResponse = elasticServer.search(index,query);
         return Json.createReader(
                 new StringReader(
@@ -35,7 +47,6 @@ public class ElasticSearchEngine {
                                 .readObject().getJsonObject("hits")
                                 .getJsonArray("hits")
                                 .getJsonObject(0).toString())).readObject()
-                               .getJsonObject("_source")
-                               .getJsonArray("planet").toString();
+                                .getJsonObject("_source").toString();
     }
 }

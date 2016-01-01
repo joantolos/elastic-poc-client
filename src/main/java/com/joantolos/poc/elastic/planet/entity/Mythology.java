@@ -1,4 +1,4 @@
-package com.joantolos.poc.elastic.entity.planet;
+package com.joantolos.poc.elastic.planet.entity;
 
 import java.io.Serializable;
 
