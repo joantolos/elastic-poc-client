@@ -1,6 +1,8 @@
 package com.joantolos.poc.elastic;
 
 import com.joantolos.poc.elastic.entity.planet.Planet;
+import com.joantolos.poc.elastic.utils.exception.FileManipulationException;
+import com.joantolos.poc.elastic.utils.FileUtils;
 import com.joantolos.poc.elastic.utils.JsonUtils;
 import org.junit.Assert;
 import org.junit.After;
@@ -15,14 +17,9 @@ public class PlanetTest {
     private String planetById;
 
     @Before
-    public void setUp(){
+    public void setUp() throws FileManipulationException {
         this.elasticSearchEngine = new ElasticSearchEngine();
-        this.planetById =
-                        "{\n" +
-                        "    \"query\" : {\n" +
-                        "        \"term\" : { \"planet.id\" : \"#planetId\" }\n" +
-                        "    }\n" +
-                        "}";
+        this.planetById = FileUtils.streamToString(getClass().getClassLoader().getResourceAsStream("query/planetById.json"));
     }
 
     @After
@@ -32,7 +29,7 @@ public class PlanetTest {
 
     @Test
     public void searchPlanet1Test(){
-        String planetListJson = this.elasticSearchEngine.search("planets", planetById.replace("#planetId", "1"));
+        String planetListJson = this.elasticSearchEngine.searchPlanet("planets", planetById.replace("#planetId", "1"));
         List<Planet> planets = JsonUtils.marshallPlanetJson(planetListJson);
         Assert.assertNotNull(planets);
         Assert.assertTrue(!planets.isEmpty());
@@ -44,7 +41,7 @@ public class PlanetTest {
 
     @Test
     public void searchPlanet2Test(){
-        String planetListJson = this.elasticSearchEngine.search("planets", planetById.replace("#planetId", "2"));
+        String planetListJson = this.elasticSearchEngine.searchPlanet("planets", planetById.replace("#planetId", "2"));
         List<Planet> planets = JsonUtils.marshallPlanetJson(planetListJson);
         Assert.assertNotNull(planets);
         Assert.assertTrue(!planets.isEmpty());

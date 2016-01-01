@@ -26,15 +26,15 @@ public class ElasticSearchEngine {
         }
     }
 
-    public String search(String index, String query) {
+    public String searchPlanet(String index, String query) {
         String searchResponse = elasticServer.search(index,query);
         return Json.createReader(
-               new StringReader(
-                       Json.createReader(
-                               new StringReader(searchResponse))
-                               .readObject().getJsonObject("hits")
-                               .getJsonArray("hits")
-                               .getJsonObject(0).toString())).readObject()
+                new StringReader(
+                        Json.createReader(
+                                new StringReader(searchResponse))
+                                .readObject().getJsonObject("hits")
+                                .getJsonArray("hits")
+                                .getJsonObject(0).toString())).readObject()
                                .getJsonObject("_source")
                                .getJsonArray("planet").toString();
     }
