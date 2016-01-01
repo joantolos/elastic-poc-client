@@ -23,13 +23,9 @@ public class FileUtils {
         return sb.toString();
     }
 
-    public static Reader inputStreamToReader(InputStream inputStream) {
-        return new InputStreamReader(inputStream);
-    }
-
     public static String streamToStringWithNewLineChar(InputStream inputStream) {
         try {
-            BufferedReader br= new BufferedReader(FileUtils.inputStreamToReader(inputStream));
+            BufferedReader br= new BufferedReader(inputStreamToReader(inputStream));
             StringBuilder builder = new StringBuilder();
             String line;
 
@@ -42,6 +38,10 @@ public class FileUtils {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static Reader inputStreamToReader(InputStream inputStream) {
+        return new InputStreamReader(inputStream);
     }
 
     public static void closeBufferedReader(BufferedReader br) {
