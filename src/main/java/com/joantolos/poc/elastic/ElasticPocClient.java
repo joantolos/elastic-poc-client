@@ -1,10 +1,16 @@
 package com.joantolos.poc.elastic;
 
 import com.joantolos.poc.elastic.engine.ElasticSearchEngine;
+import com.joantolos.poc.elastic.planet.PlanetSearch;
+import com.joantolos.poc.elastic.planet.entity.Planet;
 import com.joantolos.poc.elastic.utils.FileUtils;
+import com.joantolos.poc.elastic.utils.JsonUtils;
+import lombok.extern.java.Log;
 
 import java.io.File;
+import java.util.List;
 
+@Log
 public class ElasticPocClient {
 
     static ElasticSearchEngine elasticSearchEngine = new ElasticSearchEngine();
@@ -12,21 +18,42 @@ public class ElasticPocClient {
 
     public static void main (String[] args) {
         String mappings = FileUtils.streamToString(ElasticPocClient.class.getClassLoader().getResourceAsStream("elastic"+File.separator+"planetsIndexCreation.json"));
-        String mercuryBulk = FileUtils.streamToStringWithNewLineChar(ElasticPocClient.class.getClassLoader().getResourceAsStream("planets"+File.separator+"mercury.bulk"));
-        String venusBulk = FileUtils.streamToStringWithNewLineChar(ElasticPocClient.class.getClassLoader().getResourceAsStream("planets"+File.separator+"venus.bulk"));
 
+        log.info("Deleting index: "+index);
         elasticSearchEngine.delete(index);
+        log.info("Creating mappings...");
         elasticSearchEngine.mappings(index, mappings);
-        elasticSearchEngine.bulk(index, mercuryBulk);
-        elasticSearchEngine.bulk(index, venusBulk);
 
-//        playWithPlanets();
+        playWithPlanets();
     }
 
     public static void playWithPlanets(){
-        //Adding Earth
+        PlanetSearch planetSearch = new PlanetSearch();
+        String planetById = FileUtils.streamToString(ElasticPocClient.class.getClassLoader().getResourceAsStream("elastic" + File.separator + "query" + File.separator + "planetById.json"));
+        String planetByName = FileUtils.streamToString(ElasticPocClient.class.getClassLoader().getResourceAsStream("elastic" + File.separator + "query" + File.separator + "planetByName.json"));
+        List<Planet> planets;
+
+        String mercuryBulk = FileUtils.streamToStringWithNewLineChar(ElasticPocClient.class.getClassLoader().getResourceAsStream("planets"+File.separator+"mercury.bulk"));
+        elasticSearchEngine.bulk(index, mercuryBulk);
+        log.info("Mercury Added");
+
+        String venusBulk = FileUtils.streamToStringWithNewLineChar(ElasticPocClient.class.getClassLoader().getResourceAsStream("planets"+File.separator+"venus.bulk"));
+        elasticSearchEngine.bulk(index, venusBulk);
+        log.info("Venus Added");
+
         String earthBulk = FileUtils.streamToStringWithNewLineChar(ElasticPocClient.class.getClassLoader().getResourceAsStream("planets"+File.separator+"earth.bulk"));
         elasticSearchEngine.bulk(index, earthBulk);
+        log.info("Earth Added");
+
+        planets = JsonUtils.marshallPlanetJson(planetSearch.searchPlanet(planetById.replace("#planetId", "3")));
+        log.info("Looking for planet with id 3...");
+        String planet3 = JsonUtils.objectToJson(planets.get(0));
+        log.info("Planet 3: \n"+planet3);
+
+        planets = JsonUtils.marshallPlanetJson(planetSearch.searchPlanet(planetByName.replace("#planetName", "Venus")));
+        log.info("Looking for Venus...");
+        String venus = JsonUtils.objectToJson(planets.get(0));
+        log.info("Venus: \n"+venus);
     }
 
 }
