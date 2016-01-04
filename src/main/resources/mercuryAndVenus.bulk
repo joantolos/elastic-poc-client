@@ -1,4 +1,0 @@
-{ "index" : { "_index" : "planets", "_type" : "planet", "_id" : "1" } }
-{"planet":[{"id": "1", "name": "Mercury", "details": { "volume": "6.083×10^10 km^3", "mass": "3.302×10^23 km^3", "density": "5.43 g/cm^3" } } ] }
-{ "index" : { "_index" : "planets", "_type" : "planet", "_id" : "2" } }
-{"planet":[{"id": "2", "name": "Venus", "details": { "volume": "9.28×10^11 km^3", "mass": "4.8690×10^24 km^3", "density": "5.24 g/cm^3" } } ] }

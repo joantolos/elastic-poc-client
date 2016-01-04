@@ -1,0 +1,2 @@
+{ "index" : { "_index" : "planets", "_type" : "planet", "_id" : "2" } }
+{"planet":[{"id": "2", "name": "Venus", "details": { "volume": { "unit": "km^3", "value": "9.28e11" }, "mass": { "unit": "km^3", "value": "4.8690e24"  }, "density": { "unit": "g/cm^3", "value": "5.24" } } } ] }

@@ -12,3 +12,5 @@ Client for testing the Elastic Server hosted on Heroku under the Add-on Bonsai
 
 ## Data bulk
 
+
+## Sense Chrome Plug-In

@@ -1,0 +1,2 @@
+{ "index" : { "_index" : "planets", "_type" : "planet", "_id" : "5" } }
+{"planet":[{"id": "5", "name": "Jupiter", "details": { "volume": { "unit": "km^3", "value": "1.431e15" }, "mass": { "unit": "km^3", "value": "1.8987e27"  }, "density": { "unit": "g/cm^3", "value": "1.33" } } } ] }

@@ -9,6 +9,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.File;
 import java.util.List;
 
 public class PlanetSearchTest {
@@ -19,7 +20,7 @@ public class PlanetSearchTest {
     @Before
     public void setUp() {
         this.planetSearch = new PlanetSearch();
-        this.planetById = FileUtils.streamToString(getClass().getClassLoader().getResourceAsStream("query/planetById.json"));
+        this.planetById = FileUtils.streamToString(getClass().getClassLoader().getResourceAsStream("elastic"+ File.separator+"query"+File.separator+"planetById.json"));
     }
 
     @After
@@ -28,29 +29,29 @@ public class PlanetSearchTest {
     }
 
     @Test
-    public void searchPlanet1Test(){
+    public void searchMercuryTest(){
         String planetListJson = this.planetSearch.searchPlanet(planetById.replace("#planetId", "1"));
         List<Planet> planets = JsonUtils.marshallPlanetJson(planetListJson);
         Assert.assertNotNull(planets);
         Assert.assertTrue(!planets.isEmpty());
         Assert.assertEquals(new Long(1), planets.get(0).getId());
         Assert.assertEquals("Mercury", planets.get(0).getName());
-        Assert.assertEquals("5.43 g/cm^3", planets.get(0).getDetails().getDensity());
-        Assert.assertEquals("3.302×10^23 km^3", planets.get(0).getDetails().getMass());
-        Assert.assertEquals("6.083×10^10 km^3", planets.get(0).getDetails().getVolume());
+        Assert.assertEquals(new Double(5.43), planets.get(0).getDetails().getDensity().getValue());
+        Assert.assertEquals(new Double(3.302E23), planets.get(0).getDetails().getMass().getValue());
+        Assert.assertEquals(new Double(6.083E10), planets.get(0).getDetails().getVolume().getValue());
     }
 
     @Test
-    public void searchPlanet2Test(){
+    public void searchVenusTest(){
         String planetListJson = this.planetSearch.searchPlanet(planetById.replace("#planetId", "2"));
         List<Planet> planets = JsonUtils.marshallPlanetJson(planetListJson);
         Assert.assertNotNull(planets);
         Assert.assertTrue(!planets.isEmpty());
         Assert.assertEquals(new Long(2), planets.get(0).getId());
         Assert.assertEquals("Venus", planets.get(0).getName());
-        Assert.assertEquals("5.24 g/cm^3", planets.get(0).getDetails().getDensity());
-        Assert.assertEquals("4.8690×10^24 km^3", planets.get(0).getDetails().getMass());
-        Assert.assertEquals("9.28×10^11 km^3", planets.get(0).getDetails().getVolume());
+        Assert.assertEquals(new Double(5.24), planets.get(0).getDetails().getDensity().getValue());
+        Assert.assertEquals(new Double(4.8690e24), planets.get(0).getDetails().getMass().getValue());
+        Assert.assertEquals(new Double(9.28e11), planets.get(0).getDetails().getVolume().getValue());
     }
 
 }

@@ -4,31 +4,31 @@ import java.io.Serializable;
 
 public class Details implements Serializable {
 
-    private String volume;
-    private String mass;
-    private String density;
+    private Measurement volume;
+    private Measurement mass;
+    private Measurement density;
 
-    public String getVolume() {
+    public Measurement getVolume() {
         return volume;
     }
 
-    public void setVolume(String volume) {
+    public void setVolume(Measurement volume) {
         this.volume = volume;
     }
 
-    public String getMass() {
+    public Measurement getMass() {
         return mass;
     }
 
-    public void setMass(String mass) {
+    public void setMass(Measurement mass) {
         this.mass = mass;
     }
 
-    public String getDensity() {
+    public Measurement getDensity() {
         return density;
     }
 
-    public void setDensity(String density) {
+    public void setDensity(Measurement density) {
         this.density = density;
     }
 }

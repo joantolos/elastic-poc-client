@@ -1,0 +1,2 @@
+{ "index" : { "_index" : "planets", "_type" : "planet", "_id" : "8" } }
+{"planet":[{"id": "8", "name": "Neptune", "details": { "volume": { "unit": "km^3", "value": "6.254e13" }, "mass": { "unit": "km^3", "value": "1.0244e26"  }, "density": { "unit": "g/cm^3", "value": "1.76" } } } ] }
