@@ -35,8 +35,9 @@ public class PlanetSearchTest {
         Assert.assertTrue(!planets.isEmpty());
         Assert.assertEquals(new Long(1), planets.get(0).getId());
         Assert.assertEquals("Mercury", planets.get(0).getName());
-        Assert.assertEquals("Mercury", planets.get(0).getMythology().getName());
-        Assert.assertEquals("Greco-Roman", planets.get(0).getMythology().getOrigin());
+        Assert.assertEquals("5.43 g/cm^3", planets.get(0).getDetails().getDensity());
+        Assert.assertEquals("3.302×10^23 km^3", planets.get(0).getDetails().getMass());
+        Assert.assertEquals("6.083×10^10 km^3", planets.get(0).getDetails().getVolume());
     }
 
     @Test
@@ -47,8 +48,9 @@ public class PlanetSearchTest {
         Assert.assertTrue(!planets.isEmpty());
         Assert.assertEquals(new Long(2), planets.get(0).getId());
         Assert.assertEquals("Venus", planets.get(0).getName());
-        Assert.assertEquals("Venus", planets.get(0).getMythology().getName());
-        Assert.assertEquals("Greco-Roman", planets.get(0).getMythology().getOrigin());
+        Assert.assertEquals("5.24 g/cm^3", planets.get(0).getDetails().getDensity());
+        Assert.assertEquals("4.8690×10^24 km^3", planets.get(0).getDetails().getMass());
+        Assert.assertEquals("9.28×10^11 km^3", planets.get(0).getDetails().getVolume());
     }
 
 }

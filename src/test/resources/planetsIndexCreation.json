@@ -1,17 +1,17 @@
 {
   "settings": {
-    "analysis": {
-      "analyzer": {
-        "explode_names": {
-          "tokenizer": "whitespace",
-          "filter": ["lowercase", "explode_names_filter"]
+    "analysis" : {
+      "analyzer" : {
+        "explode_names" : {
+          "tokenizer" : "whitespace",
+          "filter" : ["lowercase", "explode_names_filter"]
         }
       },
-      "filter": {
-        "explode_names_filter": {
-          "type": "word_delimiter",
-          "preserve_original": "true",
-          "catenate_words": "true"
+      "filter" : {
+        "explode_names_filter" : {
+          "type" : "word_delimiter",
+          "preserve_original" : "true",
+          "catenate_words" : "true"
         }
       }
     },
@@ -20,7 +20,7 @@
   "mappings": {
     "planets": {
       "properties": {
-        "Planet": {
+        "planet": {
           "properties": {
             "id": {
               "type": "long"
@@ -28,12 +28,15 @@
             "name": {
               "type": "string"
             },
-            "mythology": {
+            "details": {
               "properties": {
-                "origin": {
+                "volume": {
                   "type": "string"
                 },
-                "name": {
+                "mass": {
+                  "type": "string"
+                },
+                "density": {
                   "type": "string"
                 }
               }

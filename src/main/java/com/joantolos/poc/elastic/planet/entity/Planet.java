@@ -6,7 +6,7 @@ public class Planet implements Serializable  {
 
     private Long id;
     private String name;
-    private Mythology mythology;
+    private Details details;
 
     public Long getId() {
         return id;
@@ -24,11 +24,11 @@ public class Planet implements Serializable  {
         this.name = name;
     }
 
-    public Mythology getMythology() {
-        return mythology;
+    public Details getDetails() {
+        return details;
     }
 
-    public void setMythology(Mythology mythology) {
-        this.mythology = mythology;
+    public void setDetails(Details details) {
+        this.details = details;
     }
 }

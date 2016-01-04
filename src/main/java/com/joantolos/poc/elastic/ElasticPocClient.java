@@ -15,6 +15,8 @@ public class ElasticPocClient {
         elasticSearchEngine.delete(index);
         elasticSearchEngine.mappings(index, mappings);
         elasticSearchEngine.bulk(index, bulk);
+
+        //Adding
     }
 
 }

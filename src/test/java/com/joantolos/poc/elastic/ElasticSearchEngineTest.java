@@ -18,7 +18,7 @@ public class ElasticSearchEngineTest {
         this.elasticSearchEngine = new ElasticSearchEngine();
         this.index = "planets";
         this.mappings = FileUtils.streamToString(getClass().getClassLoader().getResourceAsStream("planetsIndexCreation.json"));
-        this.bulk = FileUtils.streamToStringWithNewLineChar(getClass().getClassLoader().getResourceAsStream("firstTwoPlanets.bulk"));
+        this.bulk = FileUtils.streamToStringWithNewLineChar(getClass().getClassLoader().getResourceAsStream("mercuryAndVenus.bulk"));
     }
 
     @After
