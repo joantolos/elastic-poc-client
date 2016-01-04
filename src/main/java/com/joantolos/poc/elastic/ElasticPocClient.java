@@ -31,6 +31,7 @@ public class ElasticPocClient {
         PlanetSearch planetSearch = new PlanetSearch();
         String planetById = FileUtils.streamToString(ElasticPocClient.class.getClassLoader().getResourceAsStream("elastic" + File.separator + "query" + File.separator + "planetById.json"));
         String planetByName = FileUtils.streamToString(ElasticPocClient.class.getClassLoader().getResourceAsStream("elastic" + File.separator + "query" + File.separator + "planetByName.json"));
+        String planet = FileUtils.streamToString(ElasticPocClient.class.getClassLoader().getResourceAsStream("elastic" + File.separator + "query" + File.separator + "planet.json"));
         List<Planet> planets;
 
         String mercuryBulk = FileUtils.streamToStringWithNewLineChar(ElasticPocClient.class.getClassLoader().getResourceAsStream("planets"+File.separator+"mercury.bulk"));
@@ -45,15 +46,16 @@ public class ElasticPocClient {
         elasticSearchEngine.bulk(index, earthBulk);
         log.info("Earth Added");
 
-        planets = JsonUtils.marshallPlanetJson(planetSearch.searchPlanet(planetById.replace("#planetId", "3")));
         log.info("Looking for planet with id 3...");
-        String planet3 = JsonUtils.objectToJson(planets.get(0));
-        log.info("Planet 3: \n"+planet3);
+        planets = JsonUtils.marshallPlanetJson(planetSearch.searchPlanet(planetById.replace("#planetId", "3")));
+        log.info("Planet 3: \n"+JsonUtils.objectToJson(planets.get(0)));
 
-        planets = JsonUtils.marshallPlanetJson(planetSearch.searchPlanet(planetByName.replace("#planetName", "Venus")));
         log.info("Looking for Venus...");
-        String venus = JsonUtils.objectToJson(planets.get(0));
-        log.info("Venus: \n"+venus);
+        planets = JsonUtils.marshallPlanetJson(planetSearch.searchPlanet(planetByName.replace("#planetName", "Venus")));
+        log.info("Venus: \n"+JsonUtils.objectToJson(planets.get(0)));
+
+        planets = JsonUtils.marshallPlanetJson(planetSearch.searchPlanet(planet.replace("#q", "{ \"aggs\" : { \"max_price\" : { \"max\" : { \"field\" : \"planet.details.volume.value\" } } } }")));
+        log.info("Which has more mass, Mercury, Venus or Earth? \n"+JsonUtils.objectToJson(planets.get(0)));
     }
 
 }
