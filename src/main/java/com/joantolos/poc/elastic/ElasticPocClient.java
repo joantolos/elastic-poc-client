@@ -16,7 +16,7 @@ public class ElasticPocClient {
     static ElasticSearchEngine elasticSearchEngine = new ElasticSearchEngine();
     static String index = "planets";
 
-    public static void main (String[] args) {
+    public static void main (String[] args) throws InterruptedException {
         String mappings = FileUtils.streamToString(ElasticPocClient.class.getClassLoader().getResourceAsStream("elastic"+File.separator+"planetsIndexCreation.json"));
 
         log.info("Deleting index: "+index);
@@ -27,7 +27,7 @@ public class ElasticPocClient {
         playWithPlanets();
     }
 
-    public static void playWithPlanets(){
+    public static void playWithPlanets() throws InterruptedException {
         PlanetSearch planetSearch = new PlanetSearch();
         String planetById = FileUtils.streamToString(ElasticPocClient.class.getClassLoader().getResourceAsStream("elastic" + File.separator + "query" + File.separator + "planetById.json"));
         String planetByName = FileUtils.streamToString(ElasticPocClient.class.getClassLoader().getResourceAsStream("elastic" + File.separator + "query" + File.separator + "planetByName.json"));
@@ -46,6 +46,9 @@ public class ElasticPocClient {
         elasticSearchEngine.bulk(index, earthBulk);
         log.info("Earth Added");
 
+        log.info("Sleeping 1000 miliseconds, because this Elastic Search is slow and the bulks need a little time to be posted...");
+        Thread.sleep(1000);
+
         log.info("Looking for planet with id 3...");
         planets = JsonUtils.marshallPlanetJson(planetSearch.searchPlanet(planetById.replace("#planetId", "3")));
         log.info("Planet 3: \n"+JsonUtils.objectToJson(planets.get(0)));
@@ -54,8 +57,8 @@ public class ElasticPocClient {
         planets = JsonUtils.marshallPlanetJson(planetSearch.searchPlanet(planetByName.replace("#planetName", "Venus")));
         log.info("Venus: \n"+JsonUtils.objectToJson(planets.get(0)));
 
-        planets = JsonUtils.marshallPlanetJson(planetSearch.searchPlanet(planet.replace("#q", "{ \"aggs\" : { \"max_price\" : { \"max\" : { \"field\" : \"planet.details.volume.value\" } } } }")));
-        log.info("Which has more mass, Mercury, Venus or Earth? \n"+JsonUtils.objectToJson(planets.get(0)));
+//        planets = JsonUtils.marshallPlanetJson(planetSearch.searchPlanet(planet.replace("#q", "{ \"aggs\" : { \"max_price\" : { \"max\" : { \"field\" : \"planet.details.volume.value\" } } } }")));
+//        log.info("Which has more mass, Mercury, Venus or Earth? \n"+JsonUtils.objectToJson(planets.get(0)));
     }
 
 }
