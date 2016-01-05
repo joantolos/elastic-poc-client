@@ -2,6 +2,7 @@ package com.joantolos.poc.elastic.engine;
 
 import com.joantolos.poc.elastic.engine.remote.ElasticServer;
 import feign.Feign;
+import feign.RequestInterceptor;
 import feign.auth.BasicAuthRequestInterceptor;
 import org.apache.commons.lang.StringUtils;
 
@@ -10,17 +11,17 @@ import java.io.StringReader;
 
 public class ElasticSearchEngine {
 
-    private final String ELASTIC_URL = "https://maple-563900.us-east-1.bonsai.io";
-    private final String ELASTIC_USER = "4udfe4e3";
-    private final String ELASTIC_PASSWORD = "8p85z4at2nxnhvsa";
+    private final String ELASTIC_URL = "https://elasticsandbox.east-us.azr.facetflow.io";
+    private final String ELASTIC_USER = "kJ0lZOgk80yD78Czt217DgDw5BOg7GES";
+    private final String ELASTIC_PASSWORD = "";
     private ElasticServer elasticServer;
 
     public ElasticSearchEngine(){
-        if(!StringUtils.isEmpty(ELASTIC_USER) && !StringUtils.isEmpty(ELASTIC_PASSWORD)){
+        if(!StringUtils.isEmpty(ELASTIC_USER)){
             elasticServer = Feign.builder()
                     .requestInterceptor(new BasicAuthRequestInterceptor(ELASTIC_USER, ELASTIC_PASSWORD))
                     .target(ElasticServer.class, ELASTIC_URL);
-        }else{
+        } else {
             elasticServer = Feign.builder()
                     .target(ElasticServer.class, ELASTIC_URL);
         }
