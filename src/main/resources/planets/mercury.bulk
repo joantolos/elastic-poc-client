@@ -1,2 +1,2 @@
 { "index" : { "_index" : "planets", "_type" : "planet", "_id" : "1" } }
-{"planet":[{"id": "1", "name": "Mercury", "details": { "volume": { "unit": "km^3", "value": "6.083e10" }, "mass": { "unit": "km^3", "value": "3.302e23"  }, "density": { "unit": "g/cm^3", "value": "5.43" } } } ] }
+{"planet":[{"id": "1", "name": "Mercury", "distanceFromSun": "57909175", "details": { "volume": { "unit": "km^3", "value": "6.083e10" }, "mass": { "unit": "km^3", "value": "3.302e23"  }, "density": { "unit": "g/cm^3", "value": "5.43" } } } ] }

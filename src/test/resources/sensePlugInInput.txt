@@ -21,7 +21,7 @@ PUT /planets
         }
       }
     },
-    "number_of_replicas": 1
+    "number_of_replicas": 0
   },
   "mappings": {
     "planets": {
@@ -33,6 +33,9 @@ PUT /planets
             },
             "name": {
               "type": "string"
+            },
+            "distanceFromSun": {
+              "type": "double"
             },
             "details": {
               "properties": {
@@ -76,14 +79,24 @@ PUT /planets
 }
 
 POST /_bulk
-{ "index" : { "_index" : "planets", "_type" : "planet", "_id" : "1" } }
-{"planet":[{"id": "1", "name": "Mercury", "details": { "volume": { "unit": "km^3", "value": "6.083e10" }, "mass": { "unit": "km^3", "value": "3.302e23"  }, "density": { "unit": "g/cm^3", "value": "5.43" } } } ] }
-{ "index" : { "_index" : "planets", "_type" : "planet", "_id" : "2" } }
-{"planet":[{"id": "2", "name": "Venus", "details": { "volume": { "unit": "km^3", "value": "9.28e11" }, "mass": { "unit": "km^3", "value": "4.8690e24"  }, "density": { "unit": "g/cm^3", "value": "5.24" } } } ] }
+{"index":{"_index":"planets","_type":"planet","_id":"1"}}
+{"planet":[{"id":"1","name":"Mercury","distanceFromSun":"57909175","details":{"volume":{"unit":"km^3","value":"6.083e10"},"mass":{"unit":"km^3","value":"1"},"density":{"unit":"g/cm^3","value":"4"}}}]}
+{"index":{"_index":"planets","_type":"planet","_id":"2"}}
+{"planet":[{"id":"2","name":"Venus","distanceFromSun":"108208930","details":{"volume":{"unit":"km^3","value":"9.28e11"},"mass":{"unit":"km^3","value":"2"},"density":{"unit":"g/cm^3","value":"5"}}}]}
 
 GET /planets
 
 GET /planets/_search?q=planet.id=1
 
 POST /planets/_search
-{ "query" : { "term" : { "planet.id" : "2" } } }
+{ "query" : { "term" : { "planet.id" : "3" } } }
+
+POST /planets/_search
+{
+    "sort" : [{ "planet.distanceFromSun" : {
+                    "order" : "desc"
+                }
+            }
+    ],
+    "size" : 1
+}

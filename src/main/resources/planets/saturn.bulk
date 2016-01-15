@@ -1,2 +1,2 @@
 { "index" : { "_index" : "planets", "_type" : "planet", "_id" : "6" } }
-{"planet":[{"id": "6", "name": "Saturn", "details": { "volume": { "unit": "km^3", "value": "8.27e14" }, "mass": { "unit": "km^3", "value": "5.6851e26"  }, "density": { "unit": "g/cm^3", "value": "0.70" } } } ] }
+{"planet":[{"id": "6", "name": "Saturn", "distanceFromSun": "1426725400", "details": { "volume": { "unit": "km^3", "value": "8.27e14" }, "mass": { "unit": "km^3", "value": "5.6851e26"  }, "density": { "unit": "g/cm^3", "value": "0.70" } } } ] }

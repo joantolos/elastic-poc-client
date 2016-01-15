@@ -11,6 +11,7 @@ import java.io.StringReader;
 
 public class ElasticSearchEngine {
 
+    //kJ0lZOgk80yD78Czt217DgDw5BOg7GES:@elasticsandbox.east-us.azr.facetflow.io
     private final String ELASTIC_URL = "https://elasticsandbox.east-us.azr.facetflow.io";
     private final String ELASTIC_USER = "kJ0lZOgk80yD78Czt217DgDw5BOg7GES";
     private final String ELASTIC_PASSWORD = "";
@@ -29,6 +30,10 @@ public class ElasticSearchEngine {
 
     public String delete(String index){
         return elasticServer.delete(index);
+    }
+
+    public String deleteByQuery(String index, String query){
+        return elasticServer.deleteByQuery(index, query);
     }
 
     public String mappings(String index, String mappings){

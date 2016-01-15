@@ -1,2 +1,2 @@
 { "index" : { "_index" : "planets", "_type" : "planet", "_id" : "7" } }
-{"planet":[{"id": "7", "name": "Uranus", "details": { "volume": { "unit": "km^3", "value": "6.834e13" }, "mass": { "unit": "km^3", "value": "8.6849e25"  }, "density": { "unit": "g/cm^3", "value": "1.30" } } } ] }
+{"planet":[{"id": "7", "name": "Uranus", "distanceFromSun": "2870972200", "details": { "volume": { "unit": "km^3", "value": "6.834e13" }, "mass": { "unit": "km^3", "value": "8.6849e25"  }, "density": { "unit": "g/cm^3", "value": "1.30" } } } ] }

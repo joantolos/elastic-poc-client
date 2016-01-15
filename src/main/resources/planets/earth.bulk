@@ -1,2 +1,2 @@
 { "index" : { "_index" : "planets", "_type" : "planet", "_id" : "3" } }
-{"planet":[{"id": "3", "name": "Earth", "details": { "volume": { "unit": "km^3", "value": "1.083e12" }, "mass": { "unit": "km^3", "value": "5.9742e24"  }, "density": { "unit": "g/cm^3", "value": "5.515" } } } ] }
+{"planet":[{"id": "3", "name": "Earth", "distanceFromSun": "149597890", "details": { "volume": { "unit": "km^3", "value": "1.083e12" }, "mass": { "unit": "km^3", "value": "5.9742e24"  }, "density": { "unit": "g/cm^3", "value": "5.515" } } } ] }

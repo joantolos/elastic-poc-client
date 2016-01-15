@@ -9,6 +9,10 @@ public interface ElasticServer {
     @RequestLine("DELETE /{index}")
     String delete(@Param("index") String index);
 
+    @RequestLine("DELETE /{index}/_query")
+    @Body("{body}")
+    String deleteByQuery(@Param("index") String index, @Param("body") String body);
+
     @RequestLine("PUT /{index}")
     @Body("{body}")
     String mappings(@Param("index") String index, @Param("body") String body);

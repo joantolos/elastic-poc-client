@@ -9,6 +9,7 @@ public class Planet implements Serializable  {
 
     private Long id;
     private String name;
+    private Double distanceFromSun;
     private Details details;
 
 }

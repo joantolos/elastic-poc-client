@@ -1,2 +1,2 @@
 { "index" : { "_index" : "planets", "_type" : "planet", "_id" : "4" } }
-{"planet":[{"id": "4", "name": "Mars", "details": { "volume": { "unit": "km^3", "value": "1.6318e11" }, "mass": { "unit": "km^3", "value": "6.4191e23"  }, "density": { "unit": "g/cm^3", "value": "3.940" } } } ] }
+{"planet":[{"id": "4", "name": "Mars", "distanceFromSun": "227936640", "details": { "volume": { "unit": "km^3", "value": "1.6318e11" }, "mass": { "unit": "km^3", "value": "6.4191e23"  }, "density": { "unit": "g/cm^3", "value": "3.940" } } } ] }
